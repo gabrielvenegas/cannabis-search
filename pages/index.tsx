@@ -44,64 +44,70 @@ const Home: NextPage = () => {
               />
             </h1>
           </Grid>
-          <Grid item xs={12} sm={12} md={2}>
-            <Card sx={{ maxHeight: 300 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Sabor
-                </Typography>
-                {chosenStrain &&
-                  chosenStrain.Flavor.split(",").map((f: string, k: number) => (
-                    <Typography key={k} variant="body2">
-                      {f}
+          {chosenStrain && (
+            <>
+              <Grid item xs={12} sm={12} md={2}>
+                <Card sx={{ maxHeight: 300 }}>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Sabor
                     </Typography>
-                  ))}
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={2}>
-            <Card sx={{ maxHeight: 300 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Efeitos
-                </Typography>
-                {chosenStrain &&
-                  chosenStrain.Effects.split(",").map(
-                    (f: string, k: number) => (
-                      <Typography key={k} variant="body2">
-                        {f}
+                    {chosenStrain &&
+                      chosenStrain.Flavor.split(",").map(
+                        (f: string, k: number) => (
+                          <Typography key={k} variant="body2">
+                            {f}
+                          </Typography>
+                        )
+                      )}
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={12} md={2}>
+                <Card sx={{ maxHeight: 300 }}>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Efeitos
+                    </Typography>
+                    {chosenStrain &&
+                      chosenStrain.Effects.split(",").map(
+                        (f: string, k: number) => (
+                          <Typography key={k} variant="body2">
+                            {f}
+                          </Typography>
+                        )
+                      )}
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={12} md={2}>
+                <Card>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Descrição
+                    </Typography>
+                    {chosenStrain && (
+                      <Typography variant="body2">
+                        {chosenStrain.Description}
                       </Typography>
-                    )
-                  )}
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={2}>
-            <Card>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Descrição
-                </Typography>
-                {chosenStrain && (
-                  <Typography variant="body2">
-                    {chosenStrain.Description}
-                  </Typography>
-                )}
-              </CardContent>
-            </Card>
-          </Grid>
+                    )}
+                  </CardContent>
+                </Card>
+              </Grid>
+            </>
+          )}
         </Grid>
       </main>
 
