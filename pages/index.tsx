@@ -1,8 +1,6 @@
 import {
   Autocomplete,
-  Button,
   Card,
-  CardActions,
   CardContent,
   Grid,
   TextField,
@@ -11,7 +9,7 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "../styles/Home.module.css";
 import cannabisData from "./data.json";
 
@@ -57,8 +55,10 @@ const Home: NextPage = () => {
                   Sabor
                 </Typography>
                 {chosenStrain &&
-                  chosenStrain.Flavor.split(",").map((f: string) => (
-                    <Typography variant="body2">{f}</Typography>
+                  chosenStrain.Flavor.split(",").map((f: string, k: number) => (
+                    <Typography key={k} variant="body2">
+                      {f}
+                    </Typography>
                   ))}
               </CardContent>
             </Card>
@@ -74,9 +74,13 @@ const Home: NextPage = () => {
                   Efeitos
                 </Typography>
                 {chosenStrain &&
-                  chosenStrain.Effects.split(",").map((f: string) => (
-                    <Typography variant="body2">{f}</Typography>
-                  ))}
+                  chosenStrain.Effects.split(",").map(
+                    (f: string, k: number) => (
+                      <Typography key={k} variant="body2">
+                        {f}
+                      </Typography>
+                    )
+                  )}
               </CardContent>
             </Card>
           </Grid>
