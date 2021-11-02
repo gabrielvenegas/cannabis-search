@@ -9,12 +9,38 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import cannabisData from "./data.json";
-
+import cannabisImages from "./images.json";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 const Home: NextPage = () => {
   const [chosenStrain, setChosenStrain] = React.useState<any>();
+  const [strainImages, setStrainImages] = React.useState<any[]>([]);
+
+  useEffect(() => {
+    if (chosenStrain) {
+      // transform name to slug
+      const slug = chosenStrain.Strain.toString()
+        .toLowerCase()
+        .replace(/\s/g, "_")
+        .replaceAll("-", "_");
+
+      // find images that contain the slug
+      const images = cannabisImages.filter(
+        ({ name }) =>
+          name.includes(slug) ||
+          name.includes(slug.replace("_", "-")) ||
+          name.includes(slug.replace("_", " ")) ||
+          name.includes(slug.split("_").join()) ||
+          (name.includes(slug.split("_")[0]) &&
+            name.includes(slug.split("_")[1]))
+      );
+
+      setStrainImages(images);
+    }
+  }, [chosenStrain]);
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +61,9 @@ const Home: NextPage = () => {
                 disablePortal
                 id="combo-box-demo"
                 options={cannabisData}
-                getOptionLabel={(option) => option.Strain as string}
+                getOptionLabel={(option) =>
+                  option.Strain.toString().replaceAll("-", " ") as string
+                }
                 noOptionsText="Nenhuma strain encontrada"
                 onChange={(event, value) => setChosenStrain(value)}
                 renderInput={(params) => (
@@ -105,6 +133,14 @@ const Home: NextPage = () => {
                     )}
                   </CardContent>
                 </Card>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={6}>
+                <Carousel>
+                  {strainImages.map(({ name, url }, k) => (
+                    <img key={k} src={url} />
+                  ))}
+                </Carousel>
               </Grid>
             </>
           )}
