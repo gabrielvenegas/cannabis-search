@@ -44,7 +44,7 @@ const Home: NextPage = () => {
               />
             </h1>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={12} md={2}>
             <Card sx={{ maxHeight: 300 }}>
               <CardContent>
                 <Typography
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={12} md={2}>
             <Card sx={{ maxHeight: 300 }}>
               <CardContent>
                 <Typography
@@ -84,8 +84,8 @@ const Home: NextPage = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={8}>
-            <Card sx={{ maxHeight: 300 }}>
+          <Grid item xs={12} sm={12} md={2}>
+            <Card>
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}
